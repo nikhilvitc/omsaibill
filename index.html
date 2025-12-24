@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OM SAI FURNITURE | Invoice</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="page">
+    <header class="toolbar">
+      <div class="logo">OM SAI FURNITURE</div>
+      <div class="controls">
+        <button id="add-row-btn" class="secondary">Add Item Row</button>
+        <button id="reset-btn" class="secondary">New Bill</button>
+        <button id="pdf-btn" class="primary">Generate PDF</button>
+      </div>
+    </header>
+
+    <section id="invoice-wrapper">
+      <div id="invoice" class="invoice">
+        <div class="invoice-title">INVOICE</div>
+
+        <div class="top-section">
+          <div class="seller-box box">
+            <div class="seller-name" id="seller-name">OM SAI FURNITURE AND ELECRONICS</div>
+            <div class="seller-line" id="seller-address"></div>
+            <div class="seller-line" id="seller-state"></div>
+            <div class="seller-line" id="seller-gstin"></div>
+            <div class="seller-line" id="seller-contact"></div>
+          </div>
+
+          <div class="meta-box box">
+            <div class="meta-row">
+              <label for="invoice-number">Invoice No.</label>
+              <input id="invoice-number" name="invoice-number" type="text" readonly />
+              <label for="invoice-date">Dated</label>
+              <input id="invoice-date" name="invoice-date" type="date" />
+            </div>
+            <div class="meta-row">
+              <label for="delivery-note">Delivery Note</label>
+              <input id="delivery-note" type="text" />
+              <label for="payment-mode">Mode/Terms of Payment</label>
+              <input id="payment-mode" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="buyer-box box">
+          <div class="buyer-title">Buyer (Bill to)</div>
+          <div class="buyer-grid">
+            <div class="field">
+              <label for="buyer-name">Name</label>
+              <input id="buyer-name" type="text" placeholder="Buyer Name" />
+            </div>
+            <div class="field">
+              <label for="buyer-address">Address</label>
+              <textarea id="buyer-address" rows="2" placeholder="Buyer Address"></textarea>
+            </div>
+            <div class="field inline">
+              <div>
+                <label for="buyer-state">State Name</label>
+                <input id="buyer-state" type="text" placeholder="State" />
+              </div>
+              <div>
+                <label for="buyer-state-code">State Code</label>
+                <input id="buyer-state-code" type="text" placeholder="Code" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="buyer-phone">Phone Number</label>
+              <input id="buyer-phone" type="text" placeholder="Buyer Phone" />
+            </div>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="items-table">
+            <thead>
+              <tr>
+                <th style="width:5%">Sl No.</th>
+                <th style="width:38%">Description of Goods</th>
+                <th style="width:10%">HSN/SAC</th>
+                <th style="width:10%">Quantity</th>
+                <th style="width:8%">Rate</th>
+                <th style="width:8%">per</th>
+                <th style="width:16%">Amount</th>
+                <th style="width:5%" class="pdf-hidden">✕</th>
+              </tr>
+            </thead>
+            <tbody id="items-body"></tbody>
+            <tfoot>
+              <tr>
+                <td colspan="3" class="text-right label">Total</td>
+                <td id="total-qty" class="text-right">0 PCS</td>
+                <td></td>
+                <td></td>
+                <td id="grand-total" class="text-right">&#8377; 0.00</td>
+                <td class="pdf-hidden"></td>
+              </tr>
+              <tr id="discount-row" class="hidden-row">
+                <td colspan="6" class="text-right label">Discount</td>
+                <td id="discount-amount-display" class="text-right">&#8377; 0.00</td>
+                <td class="pdf-hidden"></td>
+              </tr>
+              <tr>
+                <td colspan="6" class="text-right label">Net Total</td>
+                <td id="net-total" class="text-right">&#8377; 0.00</td>
+                <td class="pdf-hidden"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <div class="discount-controls box pdf-hidden">
+          <label class="checkbox">
+            <input type="checkbox" id="discount-toggle" />
+            Apply Discount
+          </label>
+          <div class="discount-inputs">
+            <label for="discount-amount">Discount Amount</label>
+            <input id="discount-amount" type="number" min="0" step="0.01" placeholder="0.00" />
+          </div>
+        </div>
+
+        <div class="chargeable box">
+          <div>
+            <div class="label">Amount Chargeable (in words)</div>
+            <div id="amount-words-value" class="upper">INR ZERO ONLY</div>
+          </div>
+          <div class="eoe">E. & O.E</div>
+        </div>
+
+        <div class="remarks box">
+          <span class="label">Remarks:</span>
+          <input id="remarks" type="text" placeholder="Remarks" />
+        </div>
+
+        <div class="bottom-blocks">
+          <div class="declaration box">
+            <div class="label">Declaration</div>
+            <p>
+              We declare that this invoice shows the actual price of the goods described and that all particulars are true and correct.
+            </p>
+          </div>
+          <div class="bank box">
+            <div class="label">Company's Bank Details</div>
+            <div class="bank-field">
+              <span>A/c Holder's Name :</span>
+              <input id="bank-holder" type="text" />
+            </div>
+            <div class="bank-field">
+              <span>Bank Name :</span>
+              <input id="bank-name" type="text" />
+            </div>
+            <div class="bank-field">
+              <span>A/c No. :</span>
+              <input id="bank-account" type="text" />
+            </div>
+            <div class="bank-field">
+              <span>Branch & IFS Code :</span>
+              <input id="bank-branch-ifsc" type="text" />
+            </div>
+          </div>
+        </div>
+
+        <div class="signature-row">
+          <div class="jurisdiction" id="jurisdiction-text"></div>
+          <div class="for-block">
+            <div>for <span id="seller-name-small">OM SAI FURNITURE AND ELECRONICS</span></div>
+            <div class="sign-placeholder">Authorised Signatory</div>
+          </div>
+        </div>
+
+        <div class="footer-note">This is a Computer Generated Invoice</div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,451 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f3f3f3;
+  color: #111;
+  line-height: 1.35;
+  padding: 12px;
+}
+
+.page {
+  max-width: 960px;
+  margin: 0 auto 36px;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  gap: 12px;
+}
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+button {
+  border: 1px solid #1d4ed8;
+  background: #1d4ed8;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button.secondary {
+  background: #fff;
+  color: #1d4ed8;
+}
+
+button.small {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+#invoice-wrapper {
+  background: #fff;
+  border: 1px solid #dcdcdc;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  padding: 10px;
+}
+
+.invoice {
+  border: 1px solid #000;
+  padding: 10px;
+  background: #fff;
+  font-size: 11.5px;
+}
+
+.invoice-title {
+  text-align: center;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.4px;
+}
+
+.top-section {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.box {
+  border: 1px solid #000;
+  padding: 8px;
+  background: #fff;
+}
+
+.seller-box {
+  flex: 1.1;
+}
+
+.seller-name {
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.seller-line {
+  margin-bottom: 2px;
+}
+
+.meta-box {
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr 1.2fr;
+  gap: 4px;
+  align-items: center;
+}
+
+.meta-row.single {
+  grid-template-columns: 1fr 3.4fr;
+}
+
+.meta-row label {
+  font-weight: 600;
+  font-size: 11px;
+}
+
+.buyer-box {
+  margin-bottom: 6px;
+  padding: 6px 8px;
+}
+
+.buyer-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.buyer-grid {
+  display: grid;
+  gap: 4px;
+}
+
+.buyer-grid .field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.buyer-grid .field label {
+  white-space: nowrap;
+}
+
+.buyer-grid .field input,
+.buyer-grid .field textarea {
+  width: 100%;
+  display: block;
+  flex: 1;
+}
+
+.buyer-grid .inline {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px;
+}
+
+.buyer-grid textarea {
+  min-height: 38px;
+  height: auto;
+  text-align: left;
+  resize: vertical;
+  display: block;
+}
+
+.buyer-grid .inline > div {
+  flex: 1 1 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.buyer-grid .inline label {
+  white-space: nowrap;
+}
+
+.table-wrapper {
+  margin-bottom: 4px;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  table-layout: fixed;
+}
+
+.items-table th,
+.items-table td {
+  border: none;
+  border-right: 1px solid #c0c0c0;
+  padding: 4px 3px;
+  text-align: center;
+}
+
+.items-table th {
+  text-align: center;
+  font-weight: 700;
+  border-right: 1px solid #c0c0c0;
+}
+
+.items-table td:nth-child(2) {
+  text-align: left;
+}
+
+.items-table td input {
+  text-align: inherit;
+  border: none;
+}
+
+.items-table tr td:first-child,
+.items-table tr th:first-child {
+  border-left: 1px solid #c0c0c0;
+}
+
+.items-table tfoot tr:first-child td {
+  border-top: 1px solid #999;
+}
+
+.items-table tbody td {
+  vertical-align: top;
+  border-bottom: none;
+}
+
+.items-table input {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 12px;
+}
+
+.items-table .text-right {
+  text-align: right;
+}
+
+.items-table .label {
+  font-weight: 700;
+}
+
+.hidden-row {
+  display: none;
+}
+
+.discount-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.discount-controls .checkbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.discount-inputs {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chargeable {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.chargeable .upper {
+  text-transform: uppercase;
+  margin-top: 2px;
+  font-weight: 700;
+}
+
+.chargeable .eoe {
+  font-weight: 700;
+  white-space: nowrap;
+  padding-left: 12px;
+}
+
+.remarks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.remarks .label {
+  font-weight: 700;
+}
+
+.remarks input {
+  flex: 1;
+}
+
+.bottom-blocks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.declaration p {
+  margin-top: 4px;
+  line-height: 1.5;
+}
+
+.bank .bank-field {
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 4px;
+  white-space: normal;
+}
+
+.bank .bank-field input {
+  width: 100%;
+  font-size: 11px;
+}
+
+.signature-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 16px;
+}
+
+.jurisdiction {
+  font-weight: 700;
+}
+
+.for-block {
+  text-align: right;
+  min-width: 220px;
+}
+
+.sign-placeholder {
+  margin-top: 28px;
+}
+
+.footer-note {
+  text-align: center;
+  margin-top: 12px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  border: none;
+  border-bottom: 1px solid #c0c0c0;
+  border-radius: 0;
+  padding: 4px;
+  font-size: 11.5px;
+  background: #fff;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  background: #fff;
+}
+
+@media (max-width: 840px) {
+  .top-section {
+    flex-direction: column;
+  }
+
+  .meta-row {
+    grid-template-columns: 1fr 1.4fr;
+  }
+
+  .bottom-blocks {
+    grid-template-columns: 1fr;
+  }
+
+  .buyer-grid .inline {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  #invoice-wrapper {
+    box-shadow: none;
+    border: none;
+  }
+
+  .toolbar {
+    display: none;
+  }
+}
+
+.pdf-export .pdf-hidden {
+  display: none !important;
+}
+
+.pdf-export .items-table th.pdf-hidden,
+.pdf-export .items-table td.pdf-hidden {
+  display: none !important;
+}
+
+.pdf-export .buyer-box {
+  border: none !important;
+  padding: 0 0 6px !important;
+  margin-bottom: 6px !important;
+  border-bottom: 1px solid #000 !important;
+}
+
+.pdf-export input,
+.pdf-export textarea {
+  background: #fff !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  border: none !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  color: #000 !important;
+}
+
+textarea:-webkit-autofill,
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+  box-shadow: 0 0 0 30px #fff inset !important;
+}
