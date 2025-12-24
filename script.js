@@ -3,7 +3,7 @@ const SELLER_INFO = {
   addressLines: ['Near HP petrol pump Maniyari Dheng', 'Sitamarhi'],
   stateLine: 'State Name : Bihar, Code : 10',
   gstin: 'GSTIN/UIN: 10HOAPS1935B1ZG',
-  contact: 'Phone: 9661789040 | Email: omsaifurnelectro@gmail.com',
+  contact: 'Phone: 9661789040 | Email: Omsaifur.electronics@gmail.com',
   bank: {
     holder: 'OM SAI FURNITURE AND ELECTRONICS',
     name: 'STATE BANK OF INDIA',

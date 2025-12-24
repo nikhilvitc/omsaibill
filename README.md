@@ -34,7 +34,7 @@ A web-based invoice generation system for OM SAI FURNITURE AND ELECTRONICS.
 - Location: Near HP petrol pump Maniyari Dheng, Sitamarhi, Bihar
 - GSTIN: 10HOAPS1935B1ZG
 - Contact: 9661789040
-- Email: omsaifurnelectro@gmail.com
+- Email: Omsaifur.electronics@gmail.com
 
 ## Technical Details
 
