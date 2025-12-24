@@ -442,6 +442,23 @@ textarea:focus {
   -webkit-appearance: none !important;
   appearance: none !important;
   color: #000 !important;
+  font-weight: 500 !important;
+}
+
+.pdf-export .bank .bank-field input {
+  color: #000 !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  border-bottom: 1px solid #ddd !important;
+  padding-bottom: 2px !important;
+}
+
+.pdf-export .bank {
+  page-break-inside: avoid !important;
+}
+
+.pdf-export .bank .bank-field {
+  margin-bottom: 6px !important;
 }
 
 textarea:-webkit-autofill,
