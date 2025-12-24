@@ -106,6 +106,8 @@ button:disabled {
 
 .seller-line {
   margin-bottom: 2px;
+  line-height: 1.4;
+  font-size: 12px;
 }
 
 .meta-box {
@@ -200,6 +202,16 @@ button:disabled {
 }
 
 .items-table th,
+.items-table td input.desc {
+  font-weight: 600;
+  color: #000;
+}
+
+.items-table .sl-no {
+  font-weight: 700;
+  color: #000;
+}
+
 .items-table td {
   border: none;
   border-right: 1px solid #c0c0c0;
@@ -459,6 +471,23 @@ textarea:focus {
 
 .pdf-export .bank .bank-field {
   margin-bottom: 6px !important;
+}
+
+.pdf-bank-text {
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  color: #000 !important;
+  display: inline-block;
+}
+
+.pdf-export .items-table .sl-no {
+  font-weight: 700 !important;
+  color: #000 !important;
+}
+
+.pdf-export .items-table td input.desc {
+  font-weight: 600 !important;
+  color: #000 !important;
 }
 
 textarea:-webkit-autofill,

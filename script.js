@@ -3,12 +3,13 @@ const SELLER_INFO = {
   addressLines: ['Near HP petrol pump Maniyari Dheng', 'Sitamarhi'],
   stateLine: 'State Name : Bihar, Code : 10',
   gstin: 'GSTIN/UIN: 10HOAPS1935B1ZG',
-  contact: 'Phone: 9661789040 | Email: Omsaifur.electronics@gmail.com',
+  contact: 'Phone: 9661789040<br>Email: Omsaifur.electronics@gmail.com',
   bank: {
     holder: 'OM SAI FURNITURE AND ELECTRONICS',
     name: 'STATE BANK OF INDIA',
     account: '43172569447',
-    branchIfsc: 'BAIRGAINA, SITAMARHI, BIHAR | IFSC SBIN0002906',
+    branch: 'BAIRGAINA, SITAMARHI, BIHAR',
+    ifsc: 'IFSC: SBIN0002906',
   },
   jurisdiction: 'SUBJECT TO LOCAL JURISDICTION',
 };
@@ -57,7 +58,8 @@ function cacheElements() {
       holder: document.getElementById('bank-holder'),
       name: document.getElementById('bank-name'),
       account: document.getElementById('bank-account'),
-      branchIfsc: document.getElementById('bank-branch-ifsc'),
+      branch: document.getElementById('bank-branch'),
+      ifsc: document.getElementById('bank-ifsc'),
     },
     buyerFields: {
       name: document.getElementById('buyer-name'),
@@ -85,7 +87,7 @@ function renderSeller() {
   els.sellerAddress.innerHTML = SELLER_INFO.addressLines.join('<br />');
   els.sellerState.textContent = SELLER_INFO.stateLine;
   els.sellerGstin.textContent = SELLER_INFO.gstin;
-  els.sellerContact.textContent = SELLER_INFO.contact;
+  els.sellerContact.innerHTML = SELLER_INFO.contact;
   els.jurisdiction.textContent = SELLER_INFO.jurisdiction;
   renderBankDetails();
 }
@@ -94,7 +96,17 @@ function renderBankDetails() {
   els.bank.holder.value = SELLER_INFO.bank.holder || '';
   els.bank.name.value = SELLER_INFO.bank.name || '';
   els.bank.account.value = SELLER_INFO.bank.account || '';
-  els.bank.branchIfsc.value = SELLER_INFO.bank.branchIfsc || '';
+  els.bank.branch.value = SELLER_INFO.bank.branch || '';
+  els.bank.ifsc.value = SELLER_INFO.bank.ifsc || '';
+  
+  // Debug: Log bank details to console
+  console.log('Bank details rendered:', {
+    holder: SELLER_INFO.bank.holder,
+    name: SELLER_INFO.bank.name,
+    account: SELLER_INFO.bank.account,
+    branch: SELLER_INFO.bank.branch,
+    ifsc: SELLER_INFO.bank.ifsc
+  });
 }
 
 function setDefaultDate() {
@@ -223,6 +235,28 @@ function generatePdf() {
     pagebreak: { mode: ['avoid-all'] },
   };
 
+  // Store original bank input values
+  const bankInputs = [
+    { element: els.bank.holder, value: els.bank.holder.value },
+    { element: els.bank.name, value: els.bank.name.value },
+    { element: els.bank.account, value: els.bank.account.value },
+    { element: els.bank.branch, value: els.bank.branch.value },
+    { element: els.bank.ifsc, value: els.bank.ifsc.value }
+  ];
+
+  // Replace inputs with spans for PDF generation
+  bankInputs.forEach(input => {
+    if (input.value) {
+      const span = document.createElement('span');
+      span.textContent = input.value;
+      span.style.fontWeight = '600';
+      span.style.fontSize = '11px';
+      span.className = 'pdf-bank-text';
+      input.element.style.display = 'none';
+      input.element.parentNode.appendChild(span);
+    }
+  });
+
   document.body.classList.add('pdf-export');
   html2pdf()
     .from(element)
@@ -234,6 +268,14 @@ function generatePdf() {
       initInvoiceNumber();
     })
     .finally(() => {
+      // Restore original inputs
+      bankInputs.forEach(input => {
+        const span = input.element.parentNode.querySelector('.pdf-bank-text');
+        if (span) {
+          span.remove();
+        }
+        input.element.style.display = '';
+      });
       document.body.classList.remove('pdf-export');
     });
 }
